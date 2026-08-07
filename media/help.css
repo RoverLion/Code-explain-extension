@@ -1,0 +1,144 @@
+:root {
+  color-scheme: light dark;
+  --background: var(--vscode-editor-background, #1e1e1e);
+  --surface: var(--vscode-sideBar-background, #252526);
+  --foreground: var(--vscode-foreground, #e8e8e8);
+  --muted: var(--vscode-descriptionForeground, #a0a0a0);
+  --border: var(--vscode-panel-border, #3c3c3c);
+  --accent: var(--vscode-textLink-foreground, #4fc1ff);
+  --focus: var(--vscode-focusBorder, #007fd4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--vscode-font-family, "Segoe UI", sans-serif);
+  font-size: var(--vscode-font-size, 13px);
+  line-height: 1.6;
+}
+
+#app {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 24px;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+article {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+section {
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+section p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.lang-toggle-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.lang-toggle-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lang-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.lang-toggle button {
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--foreground);
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-toggle button:hover {
+  background: var(--vscode-toolbar-hoverBackground, rgba(127, 127, 127, .18));
+}
+
+.lang-toggle button.is-active {
+  color: var(--background);
+  background: var(--accent);
+}
+
+.lang-toggle button:focus-visible {
+  outline: 1px solid var(--focus);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  #app {
+    padding: 14px;
+  }
+
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

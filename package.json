@@ -1,0 +1,179 @@
+{
+  "name": "code-explain-learn",
+  "displayName": "Code Explain Learn",
+  "description": "VS Code / Cursor extension: explain selected code via any OpenAI-compatible API (line-by-line, knowledge points, AI-graded quizzes)",
+  "version": "0.0.11",
+  "publisher": "Rovermangit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RoverLion/Code-explain-extension.git"
+  },
+  "homepage": "https://github.com/RoverLion/Code-explain-extension",
+  "bugs": {
+    "url": "https://github.com/RoverLion/Code-explain-extension/issues"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "icon": "media/icon.png",
+  "activationEvents": [
+    "onCommand:codeExplain.explainSelection",
+    "onCommand:codeExplain.setApiKey",
+    "onCommand:codeExplain.setApiBaseUrl",
+    "onCommand:codeExplain.openUserGuide",
+    "onCommand:codeExplain.previewWebview",
+    "onCommand:codeExplain.showLearningProgress",
+    "onCommand:codeExplain.openQuestionBank",
+    "onCommand:codeExplain.startRegressionTest",
+    "onCommand:codeExplain.clearLearningProgress"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeExplain",
+          "title": "%viewContainer.codeExplain%",
+          "icon": "media/code-explain.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeExplain": [
+        {
+          "id": "codeExplain.learningProgress",
+          "name": "%view.learningProgress%"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "codeExplain.learningProgress",
+        "contents": "[%welcome.setApiKey%](command:codeExplain.setApiKey)\n\n[%welcome.setApiBaseUrl%](command:codeExplain.setApiBaseUrl)\n\n[%welcome.openUserGuide%](command:codeExplain.openUserGuide)\n\n[%welcome.showProgress%](command:codeExplain.showLearningProgress)\n\n[%welcome.startRegression%](command:codeExplain.startRegressionTest)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "codeExplain.explainSelection",
+        "title": "%command.explainSelection%"
+      },
+      {
+        "command": "codeExplain.setApiKey",
+        "title": "%command.setApiKey%"
+      },
+      {
+        "command": "codeExplain.setApiBaseUrl",
+        "title": "%command.setApiBaseUrl%"
+      },
+      {
+        "command": "codeExplain.openUserGuide",
+        "title": "%command.openUserGuide%"
+      },
+      {
+        "command": "codeExplain.previewWebview",
+        "title": "%command.previewWebview%"
+      },
+      {
+        "command": "codeExplain.showLearningProgress",
+        "title": "%command.showLearningProgress%"
+      },
+      {
+        "command": "codeExplain.openQuestionBank",
+        "title": "%command.openQuestionBank%"
+      },
+      {
+        "command": "codeExplain.startRegressionTest",
+        "title": "%command.startRegressionTest%"
+      },
+      {
+        "command": "codeExplain.clearLearningProgress",
+        "title": "%command.clearLearningProgress%"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codeExplain.explainSelection",
+          "when": "editorHasSelection",
+          "group": "navigation@9"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codeExplain.explainSelection",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e",
+        "when": "editorHasSelection"
+      }
+    ],
+    "configuration": {
+      "title": "%configuration.title%",
+      "properties": {
+        "codeExplain.apiBaseUrl": {
+          "type": "string",
+          "default": "https://api.openai.com/v1",
+          "description": "%configuration.apiBaseUrl.description%"
+        },
+        "codeExplain.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "%configuration.apiKey.description%"
+        },
+        "codeExplain.cursorApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "%configuration.cursorApiKey.description%"
+        },
+        "codeExplain.model": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "%configuration.model.description%"
+        },
+        "codeExplain.maxSelectionChars": {
+          "type": "number",
+          "default": 12000
+        },
+        "codeExplain.maxFileChars": {
+          "type": "number",
+          "default": 40000
+        },
+        "codeExplain.outputLanguage": {
+          "type": "string",
+          "enum": [
+            "zh-CN",
+            "en-US"
+          ],
+          "enumDescriptions": [
+            "%configuration.outputLanguage.zhCN%",
+            "%configuration.outputLanguage.enUS%"
+          ],
+          "default": "zh-CN",
+          "description": "%configuration.outputLanguage.description%"
+        },
+        "codeExplain.storageRoot": {
+          "type": "string",
+          "default": "",
+          "description": "%configuration.storageRoot.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "test": "node --import tsx --test src/test/**/*.test.ts",
+    "package": "npm run build && npx @vscode/vsce package --no-rewrite-relative-links"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

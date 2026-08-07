@@ -1,0 +1,423 @@
+:root {
+  color-scheme: light dark;
+  --bg: var(--vscode-editor-background, #1e1e1e);
+  --surface: var(--vscode-sideBar-background, #252526);
+  --ink: var(--vscode-foreground, #e8e8e8);
+  --muted: var(--vscode-descriptionForeground, #b0b0b0);
+  --accent: var(--vscode-textLink-foreground, #4fc1ff);
+  --line: var(--vscode-panel-border, #3c3c3c);
+  --ok: var(--vscode-testing-iconPassed, #89d185);
+  --bad: var(--vscode-errorForeground, #f48771);
+  --btn-fg: var(--vscode-button-foreground, #fff);
+  --btn-bg: var(--vscode-button-background, #0e639c);
+  --btn-hover: var(--vscode-button-hoverBackground, #1177bb);
+  --input-bg: var(--vscode-input-background, #3c3c3c);
+  --input-fg: var(--vscode-input-foreground, #e8e8e8);
+  --input-border: var(--vscode-input-border, #6b6b6b);
+  --focus: var(--vscode-focusBorder, #007fd4);
+  /* Chips/tags must use badge pair — muted-on-badge often fails contrast */
+  --chip-fg: var(--vscode-badge-foreground, var(--ink));
+  --chip-bg: var(--vscode-badge-background, color-mix(in srgb, var(--ink) 16%, transparent));
+  --star: var(--vscode-charts-yellow, #e2b93d);
+  --star-idle: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--vscode-font-family, "Segoe UI", sans-serif);
+  font-size: var(--vscode-font-size, 13px);
+}
+
+#app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.topbar,
+.section,
+.state-card,
+.summary-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.topbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h4,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 24px;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 5px;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--btn-hover);
+}
+
+.state-card {
+  margin-top: 16px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.state-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.state-card.compact {
+  padding: 22px;
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(140px, 1fr) minmax(220px, 2fr);
+  gap: 14px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.filter-bar label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+select,
+input {
+  width: 100%;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  outline: none;
+  color: var(--input-fg);
+  background: var(--input-bg);
+  font: inherit;
+}
+
+select:focus,
+input:focus,
+button:focus-visible {
+  border-color: var(--focus);
+  outline: 1px solid var(--focus);
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  border-radius: 6px 6px 0 0;
+  color: var(--muted);
+  background: transparent;
+}
+
+.tab:hover {
+  color: var(--ink);
+  background: var(--vscode-toolbar-hoverBackground, rgba(127, 127, 127, .15));
+}
+
+.tab.is-active {
+  border-bottom: 2px solid var(--accent);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 22px;
+}
+
+.summary-value {
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.summary-label,
+.muted,
+.knowledge-meta span,
+.session-card small {
+  color: var(--muted);
+}
+
+.section {
+  margin-top: 16px;
+  padding: 20px 22px;
+}
+
+.knowledge-chart,
+.session-list,
+.bank-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.knowledge-row {
+  display: grid;
+  gap: 7px;
+}
+
+.knowledge-meta {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.bar-track {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface));
+  appearance: none;
+}
+
+.bar-track::-webkit-progress-bar {
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface));
+}
+
+.bar-track::-webkit-progress-value,
+.bar-track::-moz-progress-bar {
+  border-radius: inherit;
+  background: var(--accent);
+}
+
+.session-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--bg);
+}
+
+.session-card summary {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.session-card summary > span:first-child {
+  display: grid;
+  gap: 5px;
+}
+
+.session-score {
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.session-description {
+  margin: 0;
+  padding: 0 14px 14px;
+  color: var(--muted);
+}
+
+.quiz-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 14px 14px;
+}
+
+.quiz-group {
+  padding: 12px;
+  border-left: 3px solid;
+  border-radius: 0 6px 6px 0;
+  background: var(--surface);
+}
+
+.quiz-group.pass {
+  border-color: var(--ok);
+}
+
+.quiz-group.fail {
+  border-color: var(--bad);
+}
+
+.quiz-item + .quiz-item {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.quiz-item p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.section-heading,
+.bank-card-header,
+.bank-meta,
+.tag-list {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.section-heading,
+.bank-card-header {
+  justify-content: space-between;
+}
+
+.section-heading p {
+  margin-bottom: 0;
+}
+
+.count-badge,
+.bank-meta span:not(.result),
+.tag-list span {
+  padding: 3px 8px;
+  border: 1px solid color-mix(in srgb, var(--chip-fg) 30%, transparent);
+  border-radius: 999px;
+  color: var(--chip-fg);
+  background: var(--chip-bg);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bank-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.bank-card h3 {
+  margin: 14px 0 8px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.bank-knowledge {
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.bank-meta .result.pass {
+  color: var(--ok);
+}
+
+.bank-meta .result.fail {
+  color: var(--bad);
+}
+
+.star-button {
+  padding: 3px 7px;
+  color: var(--star-idle);
+  background: transparent;
+  opacity: 0.62;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.star-button:hover,
+.star-button.is-starred {
+  color: var(--star);
+  background: transparent;
+  opacity: 1;
+  text-shadow: 0 0 0.5px color-mix(in srgb, var(--star) 55%, transparent);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  #app {
+    padding: 14px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .summary-grid,
+  .quiz-groups,
+  .filter-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

@@ -1,0 +1,7 @@
+﻿node_modules/
+dist/
+*.vsix
+.superpowers/
+.vscode-test/
+# Local-only design/plan docs — not for GitHub
+docs/superpowers/
