@@ -8,15 +8,15 @@
 
 ### 1. 选中代码 → 解析与测验
 
-![选中代码后进行讲解与测验](./media/demo/explain-quiz.gif)
+![选中代码后进行讲解与测验](https://github.com/RoverLion/Code-explain-extension/raw/main/media/demo/explain-quiz.gif)
 
 ### 2. 学习中心（进度 / 题库）
 
-![学习中心：进度与题库](./media/demo/learning-center.gif)
+![学习中心：进度与题库](https://github.com/RoverLion/Code-explain-extension/raw/main/media/demo/learning-center.gif)
 
 ### 3. 回归测试
 
-![回归测试](./media/demo/regression-test.gif)
+![回归测试](https://github.com/RoverLion/Code-explain-extension/raw/main/media/demo/regression-test.gif)
 
 ## 语言设置（重要）
 
